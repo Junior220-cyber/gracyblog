@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PNG Life & Learnings | Read More</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    :root {
+        --primary: #03062b;
+        --secondary: #1976d2;
+        --accent: #ff5722;
+        --light: #f4f4f4;
+        --dark: #333;
+        --white: #fff;
+        --transition: all 0.3s ease;
+    }
+    body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+    .container { width:90%; max-width:1200px; margin:auto; }
+    header { background: var(--primary); color: var(--white); padding: 15px 0; box-shadow:0 4px 10px rgba(0,0,0,0.1); position: sticky; top:0; z-index:1000; }
+    .header-content { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+    .logo { font-size:1.5rem; font-weight:bold; }
+    .logo span { color: var(--accent); }
+    .search-bar { flex:1; margin:0 20px; position:relative; }
+    .search-bar input { width:100%; padding:8px 35px 8px 10px; border-radius:5px; border:none; outline:none; display:block; }
+    .search-bar i { position:absolute; right:10px; top:8px; color: var(--dark); cursor:pointer; }
+    nav { display:flex; align-items:center; }
+    nav a { color: var(--white); text-decoration:none; margin-left:20px; font-weight:500; transition: var(--transition); }
+    nav a:hover { color: var(--accent); }
+    .hamburger { display:none; font-size:1.5rem; cursor:pointer; }
+    .side-menu { position:fixed; top:0; right:-250px; width:250px; height:100%; background:var(--primary); padding-top:60px; display:flex; flex-direction:column; transition: var(--transition); z-index:2000;}
+    .side-menu a { color: var(--white); text-decoration:none; padding:15px 20px; border-bottom:1px solid rgba(255,255,255,0.1); }
+    .side-menu a:hover { color: var(--accent); }
+    .page-header { background: var(--secondary); color: var(--white); padding:50px 20px; text-align:center; transition: var(--transition); }
+    .page-header h1 { font-size:2.5rem; margin-bottom:10px; }
+    .post-meta { margin-top:10px; font-size:0.9rem; color:#eee; }
+    .post-meta span { margin-right:15px; }
+    .content-area { display:flex; gap:30px; margin-top:40px; }
+    .main-post { flex:3; transition: var(--transition); }
+    .post-content p { margin-bottom:20px; }
+    .author { display:flex; align-items:center; gap:15px; margin-top:50px; border-top:1px solid #ccc; padding-top:20px; }
+    .author img { width:80px; height:80px; border-radius:50%; object-fit:cover; }
+    .author-info h3 { margin-bottom:5px; color: var(--secondary); }
+    .author-info p { font-size:0.9rem; color:#555; }
+
+    .sidebar { flex:1; background: var(--white); padding:20px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); max-height:calc(100vh - 150px); overflow-y:auto; position:sticky; top:100px; }
+    .sidebar h3 { margin-bottom:20px; color: var(--secondary); }
+    .related-post { display:flex; gap:10px; margin-bottom:15px; align-items:center; cursor:pointer; transition: var(--transition); padding:5px; border-radius:5px; }
+    .related-post:hover { background: #f0f0f0; }
+    .related-post.active { background: var(--accent); color: var(--white); }
+    .related-post img { width:60px; height:60px; border-radius:5px; object-fit:cover; flex-shrink:0; }
+    .related-post div { flex:1; }
+    .related-post div h4 { font-size:0.95rem; margin-bottom:3px; color: inherit; }
+    .related-post div p { font-size:0.8rem; color: inherit; }
+
+    footer { background: var(--primary); color: var(--white); text-align:center; padding:15px 0; margin-top:40px; }
+
+    @media(max-width:1024px){ .hamburger { display:block; } nav { display:none; } .content-area { flex-direction:column; } .sidebar { max-height:none; position:relative; top:auto; } }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">PNG Life<span> & Learnings</span></div>
+        <div class="search-bar" id="searchBar">
+            <input type="text" placeholder="Search blogs...">
+            <i class="fas fa-search" id="searchIcon"></i>
+        </div>
+        <nav>
+            <a href="Main.html"><i class="fas fa-home"></i> Home</a>
+            <a href="MyBlog.html"><i class="fas fa-blog"></i> My Blog</a>
+            <a href="About.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="Contact.html"><i class="fas fa-phone"></i> Contact</a>
+        </nav>
+        <i class="fas fa-bars hamburger" id="hamburger"></i>
+    </div>
+</header>
+
+<div class="side-menu" id="sideMenu">
+    <a href="Main.html"><i class="fas fa-home"></i> Home</a>
+    <a href="MyBlog.html"><i class="fas fa-blog"></i> My Blog</a>
+    <a href="About.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="Contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
+
+<section class="page-header">
+    <h1 id="post-title">Blog Title</h1>
+    <div class="post-meta">
+        <span id="post-date">Published: 01 Jan 2025</span>
+        <span id="post-time">Estimated reading: 5 min</span>
+    </div>
+</section>
+
+<div class="container content-area">
+    <div class="main-post">
+        <section class="post-content" id="post-content">
+            <p>Loading content...</p>
+        </section>
+
+        <section class="author">
+            <img src="/Images/profile.jpg" alt="Author">
+            <div class="author-info">
+                <h3>Grace — Pharmacist & Blogger</h3>
+                <p>Sharing insights and experiences from the world of pharmacy and healthcare.</p>
+            </div>
+        </section>
+    </div>
+
+    <aside class="sidebar" id="related-posts">
+        <h3>Related Topics</h3>
+    </aside>
+</div>
+
+<footer>
+    <p>&copy; 2025 PNG Life & Learnings. All Rights Reserved.</p>
+</footer>
+
+<script>
+const posts = {
+    1: {
+        title: "Life in a Busy City Pharmacy",
+        date: "01 Aug 2025",
+        time: "5 min",
+        img: "/Images/Treating patient.jpg",
+        summary: "Experience the fast-paced environment of a city pharmacy.",
+        content: `<h2>Where efficiency meets compassion in patient care</h2>
+                  <p>In the heart of a bustling city, a pharmacy is more than just a location for collecting prescriptions — it is a hub of health, care, and trust. For many residents, it is the first point of contact when a medical concern arises, and the familiar faces behind the counter provide reassurance.</p>
+                  <h3>A Day That Starts at Full Speed</h3>
+                  <p>From the moment the doors open, the pace is fast and unrelenting. Patients arrive with urgent prescriptions in hand, parents rush in for medication for their children, and elderly customers seek advice. Every second counts.</p>
+                  <h3>The Balancing Act Behind the Counter</h3>
+                  <p>Pharmacists and their teams juggle dispensing medications, answering health queries, and liaising with doctors, all while maintaining a warm, approachable manner.</p>
+                  <p>By mid-day, the pharmacy faces a rush of customers needing immediate attention. Inventory management, consultation, and health education all happen simultaneously, showcasing the expertise and patience of the pharmacy staff.</p>
+                  <p>Even in quieter moments, the pharmacists dedicate time to training interns, checking prescriptions for safety, and reviewing new medical research to improve patient care.</p>`
+    },
+    2: {
+        title: "Understanding Prescription Medications",
+        date: "05 Aug 2025",
+        time: "6 min",
+        img: "/Images/drug resistance.jpg",
+        summary: "A breakdown of common prescription types and patient guidance.",
+        content: `<h2>Know Your Medications</h2>
+                  <p>Understanding prescription drugs is essential for safe and effective treatment. Learn about different types, their uses, and important precautions.</p>
+                  <p>Medications can vary in effect depending on age, health condition, and other drugs being taken. Patients should always follow the prescribed dosage and never share medications.</p>
+                  <p>Pharmacists play a vital role in counseling patients, ensuring proper administration, and explaining possible side effects to prevent misuse.</p>`
+    },
+    3: {
+        title: "The Role of AI in Modern Pharmacy",
+        date: "10 Aug 2025",
+        time: "7 min",
+        img: "/Images/Ai in Pharmacist.jpg",
+        summary: "How AI reshapes drug development and patient care.",
+        content: `<h2>AI Transforming Pharmacy</h2>
+                  <p>Artificial intelligence is revolutionizing pharmacy practice, from drug discovery to personalized patient care. Explore its benefits and challenges.</p>
+                  <p>AI algorithms help identify new drug candidates faster, predict patient responses, and optimize supply chains in pharmacies.</p>
+                  <p>While AI offers efficiency, human oversight is essential for ethical decisions, patient interaction, and handling unexpected medical cases.</p>`
+    },
+    4: {
+        title: "Life as a Pharmacy Technician",
+        date: "15 Aug 2025",
+        time: "5 min",
+        img: "/Images/Pharmacy-Tech.jpg",
+        summary: "Explore day-to-day responsibilities in pharmacy practice.",
+        content: `<h2>Supporting Patient Care</h2>
+                  <p>Pharmacy technicians play a critical role in ensuring accurate dispensing, assisting pharmacists, and providing customer support in busy pharmacies.</p>
+                  <p>Technicians manage inventory, prepare medications, and maintain records, all while ensuring regulatory compliance and patient safety.</p>`
+    },
+    5: {
+        title: "The Science Behind Medicines",
+        date: "20 Aug 2025",
+        time: "6 min",
+        img: "/Images/Ai drug image.jpg",
+        summary: "Discover how medications are developed and tested.",
+        content: `<h2>From Lab to Patient</h2>
+                  <p>Medication development involves extensive research, clinical trials, and rigorous safety protocols to ensure efficacy and patient safety.</p>
+                  <p>Researchers study molecular interactions, test formulations, and refine delivery methods to maximize effectiveness and reduce side effects.</p>`
+    },
+    6: {
+        title: "The Role of AI in Medicine Discoveries",
+        date: "25 Aug 2025",
+        time: "7 min",
+        img: "/Images/Drug decoding.jpg",
+        summary: "AI is shaping new discoveries in medicine.",
+        content: `<h2>Innovation Through AI</h2>
+                  <p>AI accelerates medical discoveries, enhances research accuracy, and helps identify new treatment options for complex diseases.</p>
+                  <p>With AI, researchers can analyze massive datasets, simulate drug interactions, and predict outcomes faster than traditional methods.</p>`
+    }
+};
+
+let currentPostId = new URLSearchParams(window.location.search).get('post') || 1;
+
+function loadPost(id) {
+    const post = posts[id];
+    document.getElementById('post-title').textContent = post.title;
+    document.getElementById('post-date').textContent = "Published: " + post.date;
+    document.getElementById('post-time').textContent = "Estimated reading: " + post.time;
+    const contentArea = document.getElementById('post-content');
+    contentArea.style.opacity = 0;
+    setTimeout(() => {
+        contentArea.innerHTML = post.content;
+        contentArea.style.opacity = 1;
+    }, 200);
+    history.pushState(null, "", `?post=${id}`);
+    currentPostId = id;
+    highlightActivePost(id);
+}
+
+// Load sidebar
+const relatedContainer = document.getElementById('related-posts');
+for (let id in posts) {
+    const p = posts[id];
+    const div = document.createElement('div');
+    div.classList.add('related-post');
+    div.dataset.id = id;
+    div.innerHTML = `<img src="${p.img}" alt="${p.title}">
+                     <div>
+                        <h4>${p.title}</h4>
+                        <p>${p.summary}</p>
+                     </div>`;
+    div.addEventListener('click', () => loadPost(id));
+    relatedContainer.appendChild(div);
+}
+
+function highlightActivePost(id) {
+    document.querySelectorAll('.related-post').forEach(el => {
+        el.classList.toggle('active', el.dataset.id === id);
+    });
+}
+
+// Initial load
+loadPost(currentPostId);
+
+// Hamburger toggle
+document.getElementById('hamburger').addEventListener('click', () => {
+    const sideMenu = document.getElementById('sideMenu');
+    sideMenu.style.right = sideMenu.style.right === '0px' ? '-250px' : '0px';
+});
+
+// Search bar toggle
+document.getElementById('searchIcon').addEventListener('click', () => {
+    document.getElementById('searchBar').classList.toggle('active');
+});
+</script>
+</body>
+</html>

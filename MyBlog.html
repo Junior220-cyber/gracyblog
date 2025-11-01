@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PNG Life & Learnings | My Blog</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    :root {
+        --primary: #03062b;
+        --secondary: #1976d2;
+        --accent: #ff5722;
+        --light: #f4f4f4;
+        --dark: #333;
+        --white: #fff;
+        --transition: all 0.3s ease;
+    }
+    body { background-color: var(--light); color: var(--dark); line-height: 1.6; overflow-x:hidden; }
+    .container { width:90%; max-width:1200px; margin:auto; }
+    header { background: var(--primary); color: var(--white); padding:15px 0; box-shadow:0 4px 10px rgba(0,0,0,0.1); position:sticky; top:0; z-index:1000; }
+    .header-content { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; position:relative; }
+    .logo { font-size:1.5rem; font-weight:bold; }
+    .logo span { color: var(--accent); }
+
+    /* Search bar styles */
+    .search-bar { flex:1; margin:0 20px; position:relative; }
+    .search-bar input { width:100%; padding:8px 35px 8px 10px; border-radius:5px; border:none; outline:none; display:block; }
+    .search-bar i { position:absolute; right:10px; top:8px; color: var(--dark); cursor:pointer; }
+    .search-bar.active input { display:block; }
+
+    nav { display:flex; align-items:center; }
+    nav a { color: var(--white); text-decoration:none; margin-left:20px; font-weight:500; transition: var(--transition); }
+    nav a:hover { color: var(--accent); }
+
+    /* Hamburger menu */
+    .hamburger { display:none; font-size:1.5rem; cursor:pointer; color:var(--white); }
+
+    /* Side menu */
+    .side-menu {
+        position:fixed; right:-250px; top:0; width:250px; height:100%; background: var(--primary);
+        padding:50px 20px; display:flex; flex-direction:column; gap:20px; transition:right 0.3s ease; z-index:2000;
+    }
+    .side-menu a { color: var(--white); text-decoration:none; font-size:1.2rem; }
+    .side-menu a:hover { color: var(--accent); }
+
+    .page-header { background: var(--secondary); color: var(--white); padding:50px 20px; text-align:center; }
+    .page-header h1 { font-size:2.5rem; }
+    .blog-list { padding:40px 0; }
+    .blog-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:30px; }
+    .post { background: var(--white); padding:20px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; display:flex; flex-direction:column; }
+    .post:hover { transform: translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.2); }
+    .post img { width:100%; height:auto; border-radius:8px; margin-bottom:15px; }
+    .post h2 { margin-bottom:10px; color: var(--secondary); }
+    .post p { margin-bottom:10px; flex-grow:1; }
+    .read-more { display:inline-block; margin-top:10px; color: var(--accent); text-decoration:none; font-weight:500; transition: var(--transition); }
+    .read-more:hover { text-decoration:underline; color: var(--secondary); }
+    .reactions { margin-top:10px; display:flex; gap:15px; }
+    .reactions i { cursor:pointer; color: var(--secondary); transition: var(--transition); }
+    .reactions i:hover { color: var(--accent); }
+
+    footer { background: var(--primary); color: var(--white); text-align:center; padding:15px 0; margin-top:40px; }
+
+    /* Responsive adjustments */
+    @media(max-width:961px) { nav { display:none; } .hamburger { display:block; } .search-bar input { display:none; position:absolute; top:40px; right:0; width:200px; z-index:1500; } }
+    @media(min-width:962px) { .side-menu { display:none; } }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">PNG Life<span> & Learnings</span></div>
+        <div class="search-bar" id="searchBar">
+            <input type="text" placeholder="Search blogs...">
+            <i class="fas fa-search" id="searchIcon"></i>
+        </div>
+        <i class="fas fa-bars hamburger" id="hamburger"></i>
+        <nav>
+            <a href="Main.html"><i class="fas fa-home"></i> Home</a>
+            <a href="MyBlog.html"><i class="fas fa-blog"></i> My Blog</a>
+            <a href="About.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="Contact.html"><i class="fas fa-phone"></i> Contact</a>
+        </nav>
+    </div>
+</header>
+
+<div class="side-menu" id="sideMenu">
+    <a href="Main.html"><i class="fas fa-home"></i> Home</a>
+    <a href="MyBlog.html"><i class="fas fa-blog"></i> My Blog</a>
+    <a href="About.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="Contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
+
+<section class="page-header">
+    <h1>My Blog Posts</h1>
+    <p>Sharing my journey, tips, and insights in the world of pharmacy</p>
+</section>
+
+<section class="container blog-list">
+    <div class="blog-grid">
+        <div class="post">
+            <img src="/Images/Treating patient.jpg" alt="Pharmacy life">
+            <h2>Life in a Busy City Pharmacy</h2>
+            <p>Experience the fast-paced environment of a city pharmacy, where every second counts 
+                in helping patients get the care they need.</p>
+            <div class="reactions">
+                <i class="fas fa-thumbs-up"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <a href="ReadMore.html?post=1" class="read-more">Read More</a>
+        </div>
+        <div class="post">
+            <img src="/Images/drug resistance.jpg" alt="Drug Resistance">
+            <h2>Understanding Prescription Medications</h2>
+            <p>A breakdown of common prescription types and what patients should know before taking them.</p>
+            <div class="reactions">
+                <i class="fas fa-thumbs-up"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <a href="ReadMore.html?post=2" class="read-more">Read More</a>
+        </div>
+        <div class="post">
+            <img src="/Images/Ai in Pharmacist.jpg" alt="AI in pharmacy">
+            <h2>The Role of AI in Modern Pharmacy</h2>
+            <p>How artificial intelligence is reshaping drug development and patient care strategies.</p>
+            <div class="reactions">
+                <i class="fas fa-thumbs-up"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <a href="ReadMore.html?post=3" class="read-more">Read More</a>
+        </div>
+        <div class="post">
+            <img src="/Images/Pharmacy-Tech.jpg" alt="Pharmacy Technician">
+            <h2>Life as a Pharmacy Technician</h2>
+            <p>Exploring the day-to-day responsibilities and rewarding moments in pharmacy practice.</p>
+            <div class="reactions">
+                <i class="fas fa-thumbs-up"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <a href="ReadMore.html?post=4" class="read-more">Read More</a>
+        </div>
+        <div class="post">
+            <img src="/Images/Ai drug image.jpg" alt="Medicines">
+            <h2>The Science Behind Medicines</h2>
+            <p>A closer look at how medications are developed and tested for safety.</p>
+            <div class="reactions">
+                <i class="fas fa-thumbs-up"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <a href="ReadMore.html?post=5" class="read-more">Read More</a>
+        </div>
+        <div class="post">
+            <img src="/Images/Drug decoding.jpg" alt="AI in medicine">
+            <h2>The Role of AI in Medicine Discoveries</h2>
+            <p>How artificial intelligence is reshaping drug development and patient care strategies.</p>
+            <div class="reactions">
+                <i class="fas fa-thumbs-up"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <a href="ReadMore.html?post=6" class="read-more">Read More</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 PNG Life & Learnings. All Rights Reserved.</p>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const sideMenu = document.getElementById('sideMenu');
+    const searchIcon = document.getElementById('searchIcon');
+    const searchBar = document.getElementById('searchBar');
+
+    hamburger.addEventListener('click', () => {
+        sideMenu.style.right = sideMenu.style.right === '0px' ? '-250px' : '0px';
+    });
+
+    searchIcon.addEventListener('click', () => {
+        searchBar.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>
